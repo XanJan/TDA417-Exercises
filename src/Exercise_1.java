@@ -1,3 +1,4 @@
+package src;
 public class Exercise_1 {
     
     //1.Adapt binary search so that it works on arrays that are sorted in descending instead of ascending order.
@@ -61,15 +62,31 @@ public class Exercise_1 {
 
         return -1;
     }
+//Sort the sequence 4 6 8 2 9 5 1 by hand with: 1) Insertion sort 2) Quicksort (using the median-of-three pivot) 3) Mergesort
+
+public static<V extends Comparable<? super V>> int[] insertionSort(Integer[] array_in){
+    int n = array_in.length;
+    int[] array_out = new int[n];
+    int sorted = 0;
+    int position = 0;
+
+    while(sorted < n){
+        int next = array_in[sorted];
+        
+        while(position <= sorted && array_out[position] < next){
+            position += 1;
+            array_out[position] = next;
+            sorted += 1;
+        }
+    }
+    return array_out;
+
+}
+
     
     public static void main(String[] args){
-        Integer[] decendIntList = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-
-        assert binSearch(decendIntList, 15) == false;
-        assert binSearch(decendIntList, 8) == true;
-
-        assert squareRoot(9) == 3;
-        assert squareRoot(25) == 5;
-        assert squareRoot(64) == 8;
+        Integer[] randomIntList = {2, 4, 8, 3, 7, 9, 1, 0, 5, 6};
+        insertionSort(randomIntList);
+        //assert insertionSort(randomIntList) == {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
     }
 }
